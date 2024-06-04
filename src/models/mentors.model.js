@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 const modelName = 'mentors'
-const schema = mongoose.Schema(
+const schema = new mongoose.Schema(
     {
         firstName: {
             type: String,
