@@ -1,24 +1,33 @@
 /* eslint-disable */
-const db = require('../lib/db')
+const MentorsModel = require('../models/mentors.model')
 
-function getAll(params) {
-    
-    
+
+async function getAll() {
+    const getAll = await MentorsModel.find()
+    return getAll
 }
 
-function getById(params) {
-    
+async function getById(id) {
+    const mentorById = await MentorsModel.findById(id) 
+    return mentorById
 }
 
-function add(params) {
-    
+async function add(mentorData) {
+    const newMentor = await MentorsModel.create(mentorData)
+    return newMentor
 }
 
-function deleteById(params) {
-    
+async function deleteById(id) {
+    const delMentor = await MentorsModel.findByIdAndDelete(id)
+    return delMentor
 }
 
-function UpdateById(params) {
-    
+async function UpdateById(id, mentorsData) {
+    const updateMentor = await MentorsModel.findByIdAndDelete(id, mentorsData, {
+        new: true,
+    })
+    return updateMentor
 }
+
+module.exports = { getAll, getById, add, deleteById, UpdateById}
 
