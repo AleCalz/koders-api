@@ -4,12 +4,26 @@
 //modelos siempre con la primera letra mayus
 // const kodersModel = require('../models/koders.model')
 const Koder = require('../models/koders.model')
+const encript = require('../lib/encrypt')
+const createErrors = require('http-errors')
 
 async function create(koderData){ //se vuelve una promesa
+    //validacion para crear koders no repetidos
+    const koderFound = await Koder.findOne({ email: koderData.email })
+
+    if(koderFound){
+        // throw new Error("Email already in use")
+        throw createErrors(409,"Email already in use")
+    }
+
+    //reemplazamos y encriptamos nuestra pass / encript nos regresa una promesa
+
+    koderData.password = await encript.encrypt(koderData.password)
 
     //le indicamos que espere que se resuelva la promesa
     //para ocupar el await siempreeeee debe contener el asyn sobre la funcion
     const newKoder = await Koder.create(koderData)
+
     return newKoder
 }
 //modelo sirve para crear o consultar info
