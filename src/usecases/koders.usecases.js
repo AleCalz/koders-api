@@ -52,7 +52,6 @@ async function UpdateById(id, newKoderData){
     })
 
     return updateKoder
-    // const updateKoder = await Koder.findByIdAndUpdate(id, newKoderData)
 }
 
 module.exports = {create, getAll, getById, deleteById, UpdateById}
