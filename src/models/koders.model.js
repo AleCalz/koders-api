@@ -28,11 +28,10 @@ const schema = new mongoose.Schema(
             type: Date,
             required: false, 
         },
-        // generation: {
-        //     type: Number,
-        //     min: 1, 
-        //     max: 100, 
-        // },
+        generation: { //haciendo referencia a otro modelo (creando relaciones)
+            type: mongoose.Schema.Types.ObjectId, //se coloca un id del modelo(documento) 
+            ref: 'generations', //le decimos a que modelo debe hacer referencia, colocamos el nombre  
+        },
         createdAt: {
             type: Date,
             default: Date.now, //agrega un valor por defecto  

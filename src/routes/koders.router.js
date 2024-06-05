@@ -1,10 +1,11 @@
 /* eslint-disable */
 const express = require('express')
 const koderUseCase = require('../usecases/koders.usecases')
+const auth = require('../middlewares/auth.middleware')
 
 const router = express.Router()
 
-router.get('/', async (request, response) => {
+router.get('/', auth, async (request, response) => {
     try {
     //esto nos regresa una promesa
     const koders = await koderUseCase.getAll()
@@ -59,7 +60,7 @@ router.get('/:id', async (request, response) => {
    }
 })
 
-router.delete('/:id', async (request, response) => {
+router.delete('/:id', auth, async (request, response) => {
    try {
     const { id } = request.params
     const koderDeleted = await koderUseCase.deleteById(id)

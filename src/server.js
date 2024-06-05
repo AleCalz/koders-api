@@ -2,6 +2,8 @@
 const express = require('express')
 const kodersRouter = require('./routes/koders.router') 
 const mentorsRouter = require('./routes/mentors.router')
+const authRouter = require('./routes/auth.router')
+
 const app = express()
 
 
@@ -10,6 +12,7 @@ app.use(express.json())
 
 //despues montamos nuestro servidor
 app.use('/koders', kodersRouter)
+app.use('/auth', authRouter)
 // app.use('/mentors', mentorsRouter)
 
 app.get('/', (request, response) => {
