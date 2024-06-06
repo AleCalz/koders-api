@@ -1,4 +1,5 @@
 /* eslint-disable */
+const cors = require('cors') //middleeware
 const express = require('express')
 const kodersRouter = require('./routes/koders.router') 
 const authRouter = require('./routes/auth.router')
@@ -9,8 +10,9 @@ const app = express()
 
 
 //middleware - tratamiento de request 
+app.use(cors()) //en caso que nos llame desde otro servidor // desde cualquier lugar puede ser mandada a llamar
+//- tratamiento de request 
 app.use(express.json())
-
 //despues montamos nuestro servidor
 app.use('/koders', kodersRouter)
 app.use('/auth', authRouter)

@@ -26,17 +26,15 @@ async function create(koderData){ //se vuelve una promesa
 
     return newKoder
 }
-//modelo sirve para crear o consultar info
 async function getAll(){
 
-    //find regresa un query que es una promesa de igual manera
-    const allKoders = await Koder.find()
+    const allKoders = await Koder.find().populate('generation') 
 
     return allKoders
 }
 
 async function getById(id){
-    const koder = await Koder.findById(id);
+    const koder = await Koder.findById(id).populate('generation')
     return koder
 }
 

@@ -8,7 +8,6 @@ async function auth(request, response, next) {
     try {
         //lo que nos da el user en el header de auth es el token 
         const token = request.headers.authorization  
-        //si no bhay header de autorizacion
         if(!token){
             throw createError(401, 'JWT is require')
         }
